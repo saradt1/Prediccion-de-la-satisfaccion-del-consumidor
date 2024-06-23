@@ -5,19 +5,19 @@ from sklearn.feature_selection import mutual_info_classif
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Cargar el dataset
+#Cargamos el dataset
 df = pd.read_excel('dataset.xlsx')
 
-# Procesar las columnas seleccionadas
+#Procesamos las columnas seleccionadas
 selected_columns = df.iloc[:, 3:]
 column_means = selected_columns.mean()  # Calcular la media de cada columna para reemplazar los valores faltantes
 selected_columns = selected_columns.fillna(column_means)  # Rellenar con la media de cada columna
 selected_columns = selected_columns.astype(float)  # Conversión a valores flotantes si los datos originales no son enteros
 df_processed = pd.concat([df.iloc[:, :3], selected_columns], axis=1)  # Combinar las columnas originales con las procesadas
 
-# Definir datos de entrada y salida
-X = df_processed.iloc[:, 3:]  # Valores de entrada
-y = df_processed['OSAT']  # Variable de salida
+#Definimos los datos de entrada y salida
+X = df_processed.iloc[:, 3:]  #Valores de entrada
+y = df_processed['OSAT']  #Variable de salida
 
 #Correlación de Pearson
 correlations = X.corrwith(y)
@@ -52,7 +52,7 @@ results = pd.DataFrame({
 # DataFrame ordenado de mayor a menos ganancia de información
 results = results.sort_values(by='Information Gain', ascending=False)
 
-#Imprimir gáfico de importancia
+#Imprimimos el gráfico de importancia
 results.set_index('Caracteristica').plot(kind='bar', figsize=(14, 8), width=0.8)
 plt.title('Análisis para la selección de Variables de Entrada')
 plt.xlabel('Variables de Entrada')
