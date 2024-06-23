@@ -120,19 +120,4 @@ plt.legend()
 plt.title('Pérdida de Entrenamiento por Época')
 plt.show()
 
-# Guardamos la red neuronal
-
-# Serializamos el modelo a JSON
-model_json = model.to_json()
-with open("model.json", "w") as json_file:
-    json_file.write(model_json)
-
-# Serializamos los pesos a HDF5
-model.save_weights("model.h5")
-print("El modelo ha sido guardado correctamente")
-
-# Cargar json y crear el modelo
-json_file = open('model.json', 'r')
-loaded_model_json = json_file.read()
-json_file.close()
-loaded_model = model_from_json(loaded_model_json)
+  
